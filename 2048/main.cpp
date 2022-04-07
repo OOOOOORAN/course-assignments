@@ -40,7 +40,7 @@ int main()
         {
             system("cls");
             printf("*******************\n");
-            printf("   You win! ¹§Ï²£¡  \n");
+            printf("   You win! Â¹Â§ÃÂ²Â£Â¡  \n");
             printf("*******************\n");
             Sleep(10000);
             exit(0);
@@ -49,7 +49,7 @@ int main()
         {
             system("cls");
             printf("*******************\n");
-            printf("   You Lose! ±ğ»ÒĞÄ£¡  \n");
+            printf("   You Lose! Â±Ã°Â»Ã’ÃÃ„Â£Â¡  \n");
             printf("*******************\n");
             Sleep(1000);
             closegraph();
