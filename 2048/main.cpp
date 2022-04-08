@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -6,14 +7,20 @@
 #include <windows.h>
 #include <conio.h>
 #include <graphics.h>
+Move move;
+int maxscore;
 int main()
 {
-    Move move;
+    FILE* tfp;
+    tfp = fopen("./maxscore.txt", "a+");
+    fclose(tfp);
+    tfp = NULL;
+    readfile();
     IMAGE img;
-    initgraph(450,647);
+    initgraph(450, 647);
     loadimage(&img, _T("./image/background.png"));
-    putimage(0,0,&img);
-    drawmap(move.map);
+    putimage(0, 0, &img);
+    drawmap(move.map, move.curscore);
     while (1)
     {
         char ch = _getch();
@@ -34,25 +41,17 @@ int main()
         case 'q':
             exit(0);
         }
-        system("cls");
-        drawmap(move.map);
+        drawmap(move.map,move.curscore);
         if (move.flag == 2)
         {
-            system("cls");
-            printf("*******************\n");
-            printf("   You win! ¹§Ï²£¡  \n");
-            printf("*******************\n");
+            /*Jundge(move.curscore);*/
             Sleep(10000);
             exit(0);
         }
         if (move.flag == 1)
         {
-            system("cls");
-            printf("*******************\n");
-            printf("   You Lose! ±ð»ÒÐÄ£¡  \n");
-            printf("*******************\n");
+            /*Jundge(move.curscore); */
             Sleep(1000);
-            closegraph();
             exit(0);
         }
     }

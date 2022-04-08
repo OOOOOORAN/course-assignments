@@ -1,4 +1,4 @@
 ﻿  main.cpp
-C:\Users\HXDCHLL\Documents\GitHub\course-assignments\2048\move.h(156,15): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+E:\project\2048\move.h(155,15): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
 D:\Microsoft Visual Studio\VC\Auxiliary\VS\include\graphics.h(1,1): warning C4828: 文件包含在偏移 0x19d3 处开始的字符，该字符在当前源字符集中无效(代码页 936)。
-  2048.vcxproj -> C:\Users\HXDCHLL\Documents\GitHub\course-assignments\2048\x64\Debug\2048.exe
+  2048.vcxproj -> E:\project\2048\x64\Debug\2048.exe

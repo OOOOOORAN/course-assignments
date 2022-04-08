@@ -1,2 +1,1 @@
 E:\project\2048\x64\Debug\2048.exe
-C:\Users\HXDCHLL\Documents\GitHub\course-assignments\2048\x64\Debug\2048.exe
