@@ -18,7 +18,7 @@ int main()
     readfile();
     IMAGE img;
     initgraph(450, 647);
-    loadimage(&img, _T("./image/background.png"));
+    loadimage(&img, _T("image//background.png"));
     putimage(0, 0, &img);
     drawmap(move.map, move.curscore);
     while (1)
