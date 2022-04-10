@@ -4,31 +4,33 @@
 #include <iostream>
 #include <ctime>
 #include <cstring>
+extern int moveflag;
 class Move
 {
 private:
 public:
     void up();
+    int judge(int map[6][6]);
     void down();
     void left();
     void right();
     void createfood();
     void score(int map);
-    int judgeleft(int map[6][6]);
-    int judgeright(int map[6][6]);
-    int judgeup(int map[6][6]);
-    int judgedown(int map[6][6]);
+    bool judgeleft(int map[6][6]);
+    bool judgeright(int map[6][6]);
+    bool judgeup(int map[6][6]);
+    bool judgedown(int map[6][6]);
     int map[6][6] = { {0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0} };
     int flag = 0;
     int curscore = 0;
 };
 void Move::up()
 {
-    if (Move::judgeup(map) == 1) {
+    if (Move::judge(map)==1) {
         flag = 1;
         return;
     }
-    else if (Move::judgeup(map) == 2) return;
+    else if (Move::judge(map) == 2) return;
     for (int col = 1; col <= 4; col++) {
         for (int row = 1; row <= 4; row++) {
             if (!map[row][col]) {
@@ -56,11 +58,11 @@ void Move::up()
 }
 void Move::down()
 {
-    if (Move::judgedown(map) == 1) {
+    if (Move::judge(map) == 1) {
         flag = 1;
         return;
     }
-    else if (Move::judgedown(map) == 2) return;
+    else if (Move::judge(map) == 2) return;
     for (int col = 1; col <= 4; col++) {
         for (int row = 4; row >= 1; row--) {
             if (!map[row][col]) {
@@ -88,11 +90,11 @@ void Move::down()
 }
 void Move::right()
 {
-    if (Move::judgeright(map) == 1) {
+    if (Move::judge(map) == 1) {
         flag = 1;
         return;
     }
-    else if (Move::judgeright(map) == 2) return;
+    else if (Move::judge(map) == 2) return;
     for (int row = 1; row <= 4; row++) {
         for (int col = 4; col >= 1; col--) {
             if (!map[row][col]) {
@@ -120,11 +122,11 @@ void Move::right()
 }
 void Move::left()
 {
-    if (Move::judgeleft(map) == 1) {
+    if (Move::judge(map) == 1) {
         flag = 1;
         return;
     }
-    else if (Move::judgeleft(map) == 2) return;
+    else if (Move::judge(Move::map) == 2) return;
     for (int row = 1; row <= 4; row++) {
         for (int col = 1; col <= 4; col++) {
             if (!map[row][col]) {
@@ -178,7 +180,18 @@ void Move::score(int map)
     else if (map == 1024)curscore += 2560;
     else if (map == 2048)curscore += 5120;
 }
-int Move::judgeup(int map[6][6])
+bool  Move::judgeleft(int map[6][6])
+{
+    for (int col = 1; col <= 3; col++) {
+        for (int row = 1; row <= 4; row++)
+        {
+            if (!map[row][col]) return 0;
+            if (map[row][col] == map[row][col + 1]) return 0;
+        }
+    }
+    return true;
+}
+bool  Move::judgeup(int map[6][6])
 {
     for (int row = 1; row <= 3; row++) {
         for (int col = 1; col <= 4; col++)
@@ -187,122 +200,54 @@ int Move::judgeup(int map[6][6])
             if (map[row][col] == map[row + 1][col]) return 0;
         }
     }
-    for (int col = 4; col >= 2; col--) {
-        for (int row = 1; row <= 4; row++)
-        {
-            if (!map[row][col]) return 2;
-            if (map[row][col] == map[row][col - 1]) return 2;
-        }
-    }
-    for (int row = 4; row >= 2; row--) {
-        for (int col = 1; col <= 4; col++)
-        {
-            if (!map[row][col]) return 2;
-            if (map[row][col] == map[row - 1][col]) return 2;
-        }
-    }
-    for (int col = 1; col <= 3; col++) {
-        for (int row = 1; row <= 4; row++)
-        {
-            if (!map[row][col]) return 2;
-            if (map[row][col] == map[row][col + 1]) return 2;
-        }
-    }
-    return 1;
+    return true;
 }
-int Move::judgedown(int map[6][6])
-{
-    for (int row = 4; row >=2; row--) {
-        for (int col = 1; col <= 4; col++)
-        {
-            if (!map[row][col]) return 0;
-            if (map[row][col] == map[row -1][col]) return 0;
-        }
-    }
-    for (int col = 4; col >= 2; col--) {
-        for (int row = 1; row <= 4; row++)
-        {
-            if (!map[row][col]) return 2;
-            if (map[row][col] == map[row][col - 1]) return 2;
-        }
-    }
-    for (int col = 1; col <= 3; col++) {
-        for (int row = 1; row <= 4; row++)
-        {
-            if (!map[row][col]) return 2;
-            if (map[row][col] == map[row][col + 1]) return 2;
-        }
-    }
-    for (int row = 1; row <= 3; row++) {
-        for (int col = 1; col <= 4; col++)
-        {
-            if (!map[row][col]) return 2;
-            if (map[row][col] == map[row + 1][col]) return 2;
-        }
-    }
-    return 1;
-}
-int Move::judgeright(int map[6][6])
+bool  Move::judgeright(int map[6][6])
 {
     for (int col = 4; col >= 2; col--) {
         for (int row = 1; row <= 4; row++)
         {
             if (!map[row][col]) return 0;
-            if (map[row][col] == map[row][col-1]) return 0;
-        }
-    }
-    for (int col = 1; col <= 3; col++) {
-        for (int row = 1; row <= 4; row++)
-        {
-            if (!map[row][col]) return 2;
-            if (map[row][col] == map[row][col + 1]) return 2;
-        }
-    }
-    for (int row = 1; row <= 3; row++) {
-        for (int col = 1; col <= 4; col++)
-        {
-            if (!map[row][col]) return 2;
-            if (map[row][col] == map[row + 1][col]) return 2;
-        }
-    }
-    for (int row = 4; row >= 2; row--) {
-        for (int col = 1; col <= 4; col++)
-        {
-            if (!map[row][col]) return 1;
-            if (map[row][col] == map[row - 1][col]) return 1;
+            if (map[row][col] == map[row][col - 1]) return 0;
         }
     }
     return true;
 }
-int Move::judgeleft(int map[6][6])
+bool  Move::judgedown(int map[6][6])
 {
-    for (int col = 1; col <=3; col++) {
-        for (int row = 1; row <= 4; row++)
-        {
-            if (!map[row][col]) return 0;
-            if (map[row][col] == map[row][col + 1]) return 0;
-        }
-    }
-    for (int row = 1; row <= 3; row++) {
-        for (int col = 1; col <= 4; col++)
-        {
-            if (!map[row][col]) return 2;
-            if (map[row][col] == map[row + 1][col]) return 2;
-        }
-    }
     for (int row = 4; row >= 2; row--) {
         for (int col = 1; col <= 4; col++)
         {
-            if (!map[row][col]) return 2;
-            if (map[row][col] == map[row - 1][col]) return 2;
+            if (!map[row][col]) return 0;
+            if (map[row][col] == map[row - 1][col]) return 0;
         }
     }
-    for (int col = 4; col >= 2; col--) {
-        for (int row = 1; row <= 4; row++)
-        {
-            if (!map[row][col]) return 2;
-            if (map[row][col] == map[row][col - 1]) return 2;
-        }
+    return true;
+}
+int Move::judge(int map[6][6])
+{
+    if (moveflag == 1)
+    {
+        if (!Move::judgeup(Move::map)) return 0;
+        if (!Move::judgeright(Move::map) || !Move::judgeleft(Move::map) || !Move::judgedown(Move::map)) return 2;
+        else return 1;
     }
-    return 1;
+    if (moveflag == 2)
+    {
+        if (!Move::judgedown(Move::map)) return 0;
+        if (!Move::judgeright(Move::map) || !Move::judgeleft(Move::map) || !Move::judgeup(Move::map)) return 2;
+        else return 1;
+    }
+    if (moveflag == 3)
+    {
+        if (!Move::judgeleft(Move::map)) return 0;
+        if (!Move::judgeright(Move::map) || !Move::judgedown(Move::map) || !Move::judgeup(Move::map)) return 2;
+        else return 1;
+    }
+    if (moveflag == 4)
+    {
+        if (!Move::judgeright(Move::map)) return 0;
+        if (!Move::judgeup(Move::map) || !Move::judgeleft(Move::map) || !Move::judgedown(Move::map)) return 2;
+        else return 1;
+    }
 }
