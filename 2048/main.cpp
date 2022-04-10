@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <graphics.h>
+int moveflag ;
 Move move;
 int maxscore;
 int main()
@@ -27,15 +28,19 @@ int main()
         switch (ch)
         {
         case 'w':
+            moveflag = 1;
             move.up();
             break;
         case 's':
+            moveflag = 2;
             move.down();
             break;
         case 'a':
+            moveflag = 3;
             move.left();
             break;
         case 'd':
+            moveflag = 4;
             move.right();
             break;
         case 'q':
