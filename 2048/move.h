@@ -46,6 +46,7 @@ void Move::up()
         for (int row = 1; row <= 4; row++) {
             if (map[row][col] == map[row + 1][col]) {
                 map[row][col] *= 2;
+                Move::score(map[row][col]);
                 if (map[row][col] == 2048) flag = 2;
                 for (int k = row + 1; k <= 4; k++) {
                     map[k][col] = map[k + 1][col];
@@ -78,6 +79,7 @@ void Move::down()
         for (int row = 4; row >= 1; row--) {
             if (map[row][col] == map[row - 1][col]) {
                 map[row][col] *= 2;
+                Move::score(map[row][col]);
                 if (map[row][col] == 2048) flag = 2;
                 for (int k = row - 1; k >= 1; k--) {
                     map[k][col] = map[k - 1][col];
@@ -110,6 +112,7 @@ void Move::right()
         for (int col = 4; col >= 1; col--) {
             if (map[row][col] == map[row][col - 1]) {
                 map[row][col] *= 2;
+                Move::score(map[row][col]);
                 if (map[row][col] == 2048) flag = 2;
                 for (int k = col - 1; k >= 1; k--) {
                     map[row][k] = map[row][k - 1];
@@ -142,6 +145,7 @@ void Move::left()
         for (int col = 1; col <= 4; col++) {
             if (map[row][col] == map[row][col + 1]) {
                 map[row][col] *= 2;
+                Move::score(map[row][col]);
                 if (map[row][col] == 2048) flag = 2;
                 for (int k = col + 1; k <= 4; k++) {
                     map[row][k] = map[row][k + 1];
