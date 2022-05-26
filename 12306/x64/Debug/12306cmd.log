@@ -1,0 +1,8 @@
+﻿  Admin.cpp
+E:\project\12306cmd\Admin.cpp(21,7): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\project\12306cmd\Admin.cpp(23,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\project\12306cmd\Admin.cpp(26,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\project\12306cmd\Admin.cpp(28,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\project\12306cmd\Admin.cpp(50,3): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+x64\Debug\chenke_management.obj : warning LNK4042: 对象被多次指定；已忽略多余的指定
+  12306cmd.vcxproj -> E:\project\12306cmd\x64\Debug\12306cmd.exe
