@@ -17,10 +17,8 @@ int main()
     fclose(tfp);
     tfp = NULL;
     readfile();
-    IMAGE img;
     initgraph(450, 647);
-    loadimage(&img, _T("image//background.png"));
-    putimage(0, 0, &img);
+    IMAGE image;
     drawmap(move.map, move.curscore);
     while (1)
     {
@@ -49,14 +47,16 @@ int main()
         drawmap(move.map,move.curscore);
         if (move.flag == 2)
         {
-            /*Jundge(move.curscore);*/
+            Jundge(move.curscore);
             Sleep(10000);
+            /*goodbye();*/
             exit(0);
         }
         if (move.flag == 1)
         {
-            /*Jundge(move.curscore); */
+            Jundge(move.curscore); 
             Sleep(1000);
+            /*goodbye();*/
             exit(0);
         }
     }
